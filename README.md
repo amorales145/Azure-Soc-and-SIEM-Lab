@@ -1,4 +1,3 @@
-# Azure-Soc-and-SIEM-Lab
 
 
 
@@ -14,7 +13,7 @@ You can use this step by step document to create your own similar setup/ use cas
 Overall I had to research a lot of information as some of the details I found from different sources were not exact to make this use case possible. One main difference in this document is logging data with (AMA), known as Azure monitor agent, the previous log analytics agent is in deprecation.  I have attached a document named ( AMA_Config_LOGAnalyticsAgentDeprecated ) to get more detailed information on this once we get to that point. Please follow along below and watch my youtube video with detailed information as well.  Thank you!
 
 1	Create Resource Group
-2   Create VM Win10 pro v.22h2 x64 gen2
+2	Create VM Win10 pro v.22h2 x64 gen2
 - standard_e2s_v3 – 2vcpus 12gig mem
 - virtual network (your vnet)
 3	create linux vm Ubuntu server 22.04 lts x64 gen2
@@ -149,5 +148,5 @@ linuxssh.json – mssql.json – nsgmaliciousactivity.json – windowsrdp.json
 (NOTE: All workbooks must be added in the same way.  The steps are all the same)
 
 16	MS Sentinel Incidents
-- Go to MA sentinel – Analytics – import – select sentinel- analytics-rules.json file
+- so to MA sentinel – Analytics – import – select sentinel- analytics-rules.json file
 (NOTE: Within MS Sentinel’s SIEM you can manage all security incidents with detailed information and functionality.  
