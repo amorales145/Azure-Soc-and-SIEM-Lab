@@ -1,0 +1,83 @@
+
+Step 1: Prepare Your Environment
+1. Verify Log Analytics Workspace Access:
+   - Make sure you have an existing Log Analytics workspace in your Azure subscription.
+   - Ensure you have the necessary permissions to write data to the workspace.
+
+2. Verify Prerequisites:
+   - Ensure your machine is running a supported operating system.
+   - Install the Azure CLI or PowerShell module if managing the setup through the command line.
+
+---
+Step 2: Enable Azure Monitor Agent (AMA)
+1. Go to Azure Portal:
+   - Sign in to the Azure portal.
+
+2. Navigate to Azure Monitor:
+   - Search for Azure Monitor in the search bar and open it.
+
+3. Configure Data Collection Rules (DCRs):
+   - In Azure Monitor, go to Data Collection Rules.
+   - Click + Create to create a new rule.
+
+4. Set Up the Data Collection Rule:
+   - **Basics**: Enter a name for your DCR and choose the region where your Log Analytics workspace resides.
+   - **Resources**: Add the virtual machines or servers you want to monitor.
+   - **Data Sources**: Add the necessary data sources such as Event Logs, Syslogs, or Windows Performance Counters.
+   - **Destination**: Select your Log Analytics workspace as the destination.
+
+5. Review and Create:
+   - Review your settings and click Create.
+
+---
+Step 3: Assign AMA to Your Machines
+1. Install Azure Monitor Agent:
+   - Go to Azure Arc if you’re monitoring non-Azure machines or Virtual Machines for Azure-hosted VMs.
+   - Select the machine and install the Azure Monitor Agent using the provided instructions.
+
+2. Connect Machines to DCR:
+   - Use the Azure portal, CLI, or PowerShell to link your machines to the DCR.
+   - Verify that the machine starts sending data to the Log Analytics workspace.
+
+---
+Step 4: Enable Defender for Cloud Data Collection
+1. Navigate to Defender for Cloud:
+   - In the Azure portal, search for Microsoft Defender for Cloud.
+
+2. Enable Defender Plans:
+   - Go to Environment settings and select the appropriate subscription.
+   - Ensure Defender plans are enabled for the resources you want to monitor.
+
+3. Enable Log Collection:
+   - Under the settings for the specific resource, verify that security-related configurations and logs are being collected.
+   - Configure policy assignments if necessary to enforce this configuration.
+
+---
+Step 5: Verify Data Collection
+1. Check Logs in Log Analytics Workspace:
+   - Navigate to your Log Analytics workspace in the Azure portal.
+   - Use the Logs section and run queries (e.g., SecurityEvent or Syslog) to validate that data is flowing correctly.
+
+2. Monitor Data Collection Status:
+   - Check the health of the Azure Monitor Agent in the Agent health section of Azure Monitor.
+   - Resolve any connectivity or configuration issues reported there.
+
+---
+Step 6: Analyze and Use Collected Data
+1. Run Queries in Log Analytics Workspace:
+   - Use KQL (Kusto Query Language) to analyze your logs.
+   - Example Query for Event Logs:
+     ```kql
+     SecurityEvent
+     | where EventID == 4625
+     | summarize count() by Computer, Account
+     ```
+
+2. Create Alerts:
+   - Set up alerts in Azure Monitor based on specific queries to get notified of suspicious activities.
+
+3. Enable Continuous Export (Optional):
+   - Export data to external storage or integrate with third-party tools as needed.
+
+
+This setup ensures your machines use the modern Azure Monitor Agent and align with the current best practices for collecting security data.
