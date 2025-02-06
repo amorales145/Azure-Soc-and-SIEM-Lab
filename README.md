@@ -1,4 +1,5 @@
 
+![SOCSIEM](https://github.com/user-attachments/assets/6d8a8f03-652a-429a-baae-95ed90809d0d)
 
 
 In this project, I created a mini SOC in Azure to monitor and analyze security events. Logs from various resources were ingested into a Log Analytics Workspace, which was integrated with Microsoft Sentinel SIEM to generate attack maps, trigger alerts, and create incidents. 
