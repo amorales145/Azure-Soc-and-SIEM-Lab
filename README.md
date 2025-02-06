@@ -12,21 +12,21 @@ In this project, I created a mini SOC in Azure to monitor and analyze security e
 You can use this step by step document to create your own similar setup/ use case.  Be mindful that certain settings might differ a bit based on updates that Azure may have completed since the creation of this document. This is a somewhat simple overview of a SOC SIEM and you should have some knowledge of Azure and the terminology used.
 Overall I had to research a lot of information as some of the details I found from different sources were not exact to make this use case possible. One main difference in this document is logging data with (AMA), known as Azure monitor agent, the previous log analytics agent is in deprecation.  I have attached a document named ( AMA_Config_LOGAnalyticsAgentDeprecated ) to get more detailed information on this once we get to that point. Please follow along below and watch my youtube video with detailed information as well.  Thank you!
 
-1	Create Resource Group
-2	Create VM Win10 pro v.22h2 x64 gen2
+1.    Create Resource Group
+2.    Create VM Win10 pro v.22h2 x64 gen2
 - standard_e2s_v3 – 2vcpus 12gig mem
 - virtual network (your vnet)
-3	create linux vm Ubuntu server 22.04 lts x64 gen2
+3.    create linux vm Ubuntu server 22.04 lts x64 gen2
 - standard_e2s_v3- 2vcpus 16gig mem
 - make sure it is in the same vnet
-4	NSG’s (Network Security Groups) (This is essentially a firewall)
+4.	NSG’s (Network Security Groups) (This is essentially a firewall)
 - go to windows vm NSG
 - delete RDP rule
 -Add new inbound rule – source Any – port range * - Destination Any – Destination port range *
-5	Go to linux VM NSG and do the same.
+5.	Go to linux VM NSG and do the same.
 - Delete SSH Rule
-6	RDP into win vm and disable firewall
-7	Create SQL database – search for SQL server eval – 2019 evaluation
+6.	RDP into win vm and disable firewall
+7.	Create SQL database – search for SQL server eval – 2019 evaluation
 - run exe and download media
 - select iso – download
 - open folder – right click on ISO and mount
@@ -38,7 +38,7 @@ Overall I had to research a lot of information as some of the details I found fr
 - select Mixed Mode SQL Server Auth
 - use same PW
 - add current user – next – install
-8	Download SSMS (This is to view sql server with UI. Could be done through powershell but this 	is just for lab purposes)
+8.	Download SSMS (This is to view sql server with UI. Could be done through powershell but this 	is just for lab purposes)
 
 - open event viewer – co changes yet just keep open
 - Link for SQL Audit Events 
@@ -59,11 +59,11 @@ auditpol /set /subcategory:"application generated" /success:enable /failure:enab
 
 - right click on sql server – properties – security -LOG auditing – Select both failed and successful logins – ok – disconnect – reconnect. ( We are generating logs so type the password wrong a few times and then login successfully)
 - go to event viewer – windows logs – application (Note failed events)
-9	Go to linux VM in Azure and get the IP address. Ping the IP from your windows machine.
+9.	Go to linux VM in Azure and get the IP address. Ping the IP from your windows machine.
 - SSH into linux box from command prompt ( SSH “yourusername”@”yourIP” - Exit
 (Recap: Both VM’s have been setup – SQL DB Setup _ NSG’s Vulnerable”
 
-10	Create Attack VM
+10.	Create Attack VM
 - create new resource group (AttackerVM)
 - Win 10 pro, V22H2 – 64 Gen 2
 - Use same UN and PW so it’s easy to remember
@@ -78,7 +78,7 @@ auditpol /set /subcategory:"application generated" /success:enable /failure:enab
 - run command without quotes “ cat auth.log | grep password
 ( Note: this will show all login attempts )
 
-11	Create Log Analytics Workspace in MS Sentinel
+11.	Create Log Analytics Workspace in MS Sentinel
 - Go to Log Analytics workspace – create new – Put in your resource group
 - Name it something you can remember like LAW-”yourresourcegroupname” (No quotes!)
 - create
@@ -95,7 +95,7 @@ auditpol /set /subcategory:"application generated" /success:enable /failure:enab
 - type | count under GetWatchlist(“geoip”)
 - you will see total count as file starts to load in real time. The total should be around 54803
 
-12	Enable Microsoft Defender for Cloud (NOTE: this is where you will need to reference the  AMA_Config_LOGAnalyticsAgentDeprecated file as I stated in the beginning of this document.
+12.	Enable Microsoft Defender for Cloud (NOTE: this is where you will need to reference the  AMA_Config_LOGAnalyticsAgentDeprecated file as I stated in the beginning of this document.
 - search for ms defender for cloud
 - go to environment settings – go to LAW – your resourcegroup name
 - defender plans – turn on servers – turn on sql servers – on machines
@@ -119,7 +119,7 @@ NOTE: the network security group logs will take some time to populate as this is
 - login to MS Azure web portal and fail a few logins to generate Entra ID level logs
 - go to log analytics workspace – logs -  type “ AuditLogs “
 
-13	Create Logs on a Subscription Level
+13.	Create Logs on a Subscription Level
 - Go to Monitor – activity log -click export activity logs tab – add diagnostic settings – select all log categories (NOTE: check off send to log analytics workspace)
 - name it something like DS-Azure-Activity
 (NOTE: This will send all subscription level events to LAWS (Log analytics workspace)
@@ -128,7 +128,7 @@ NOTE: the network security group logs will take some time to populate as this is
 (NOTE: Again we are just trying to create some activity to capture on a subscription level)
 (It will also take some time to capture this data)
 
-14	Resource Level Logs
+14.	Resource Level Logs
 
 - create storage account – go to diagnostic settings – under monitoring – click on BLOB – select Audit check box – Give it a name – select send to LAWS – SAVE!
 - Go to storage accounts – containers – create test container
@@ -139,7 +139,7 @@ NOTE: the network security group logs will take some time to populate as this is
 - go to LAWS – logs – type “ StorageBlogLogs” NO QUOTES
 - Type “ AzureDisagnostics “ NO QUOTES
 
-15	MS Sentinel Workbooks (NOTE: Workbooksare directly correlated to Maps. Malicious traffic, auth failures, bruteforce attempts, etc etc…)
+15.	MS Sentinel Workbooks (NOTE: Workbooksare directly correlated to Maps. Malicious traffic, auth failures, bruteforce attempts, etc etc…)
 - Go to MS Sentinel – workbooks
 - Add workbook – edit on top left – 3 dots on right
 - Remove whatever is there
@@ -147,6 +147,6 @@ NOTE: the network security group logs will take some time to populate as this is
 linuxssh.json – mssql.json – nsgmaliciousactivity.json – windowsrdp.json
 (NOTE: All workbooks must be added in the same way.  The steps are all the same)
 
-16	MS Sentinel Incidents
+16.	MS Sentinel Incidents
 - so to MA sentinel – Analytics – import – select sentinel- analytics-rules.json file
 (NOTE: Within MS Sentinel’s SIEM you can manage all security incidents with detailed information and functionality.  
