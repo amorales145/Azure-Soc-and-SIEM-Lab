@@ -150,5 +150,5 @@ linuxssh.json – mssql.json – nsgmaliciousactivity.json – windowsrdp.json
 (NOTE: All workbooks must be added in the same way.  The steps are all the same)
 
 16	MS Sentinel Incidents
-- so to MA sentinel – Analytics – import – select sentinel- analytics-rules.json file
+- Go to MA sentinel – Analytics – import – select sentinel- analytics-rules.json file
 (NOTE: Within MS Sentinel’s SIEM you can manage all security incidents with detailed information and functionality.  
