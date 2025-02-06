@@ -1,5 +1,5 @@
 # Azure-Soc-and-SIEM-Lab
-Azure Soc and SIEM Lab
+
 
 
 In this project, I created a mini SOC in Azure to monitor and analyze security events. Logs from various resources were ingested into a Log Analytics Workspace, which was integrated with Microsoft Sentinel SIEM to generate attack maps, trigger alerts, and create incidents. 
