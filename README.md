@@ -154,8 +154,8 @@ linuxssh.json – mssql.json – nsgmaliciousactivity.json – windowsrdp.json
 This is a crucial step as this will populate all of the Rules that are specific to incidents that will be logged.
 
 There are 3 main locations for threat analysis within MS sentinel.
-1- Analytics - This is where all the rules have been applied from the Sentinel.json file I have provided.
-2- Workbooks - This is directly related to the geoip.json file and is a good map of threat detection from a global perspective.
-3- Incidents - This is where we get detailed threat related information.
+1. Analytics - This is where all the rules have been applied from the Sentinel.json file I have provided.
+2. Workbooks - This is directly related to the geoip.json file and is a good map of threat detection from a global perspective.
+3. Incidents - This is where we get detailed threat related information.
 
 Thank you for reading my work!  I hope this detailed document is useful to you!
