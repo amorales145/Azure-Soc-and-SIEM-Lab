@@ -16,10 +16,10 @@ Overall I had to research a lot of information as some of the details I found fr
 1.    Create Resource Group
 2.    Create VM Win10 pro v.22h2 x64 gen2
 - standard_e2s_v3 – 2vcpus 12gig mem
-- virtual network (your vnet)
+- create new virtual network (your vnet)
 3.    create linux vm Ubuntu server 22.04 lts x64 gen2
 - standard_e2s_v3- 2vcpus 16gig mem
-- make sure it is in the same vnet
+- make sure all your VM's are in the same vnet
 4.	NSG’s (Network Security Groups) (This is essentially a firewall)
 - go to windows vm NSG
 - delete RDP rule
