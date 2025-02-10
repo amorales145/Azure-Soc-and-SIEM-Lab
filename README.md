@@ -122,7 +122,7 @@ Microsoft-Windows-Windows Firewall With Advanced Security/Firewall!*[System[(Eve
 After adding windows data sources the rest is self explanitory.
 
 - Go to log analytics workspace – logs (NOTE: The language in this system is know as KQL. You can do more research on this to get familiar)
-- type syslog (Note: this will produce logs for linux)
+- type Syslog (Note: this will produce logs for linux)
 - type securityevent (for windows logs)
 - type AureNetworkAnalytics_CL ( for Network security groups)
 NOTE: the network security group logs will take some time to populate as this is specific to malicious network traffic.
