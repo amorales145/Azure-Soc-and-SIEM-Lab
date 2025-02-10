@@ -105,6 +105,8 @@ auditpol /set /subcategory:"application generated" /success:enable /failure:enab
 - scroll to cloud workload protection (CWP)
 - servers on – Databases on – storage on – Keyvault on
 - On server go to settings link – (NOTE!: This is where the AMA_Config_LOGAnalyticsAgentDeprecated document is crucial as the initial setup has changed a bit. Just follow that document and watch the Video.) (I learned this as I was setting this up initially do to microsoft making some design changes)
+- Go back to MS defender for cloud - environment settings - Subscription - Continuous export - click on log analytics work space tab - everything must be checked and
+  select you rresource group as well as target workspace. save
 - Go to Log analytics workspaces – select WS – Agents – Data collection rules – select rule – data sources – win event logs – click custom (NOTE: Must use XPATH FILE) copy and paste
 - Go to log analytics workspace – logs (NOTE: The language in this system is know as KQL. You can do more research on this to get familiar)
 - type syslog (Note: this will produce logs for linux)
