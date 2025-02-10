@@ -115,7 +115,8 @@ auditpol /set /subcategory:"application generated" /success:enable /failure:enab
 - Go back to log analytics workspaces - agents - data colleciton rules - select rule name, click on the name not the check box - data sources - click windows event logs -
 - click custom (NOTE: Must use XPATH FILE) copy and paste both of these lines below.
 
-  Microsoft-Windows-Windows Defender/Operational!*[System[(EventID=1116 or EventID=1117)]]
+Microsoft-Windows-Windows Defender/Operational!*[System[(EventID=1116 or EventID=1117)]]
+
 Microsoft-Windows-Windows Firewall With Advanced Security/Firewall!*[System[(EventID=2003)]]
 
 After adding windows data sources the rest is self explanitory.
