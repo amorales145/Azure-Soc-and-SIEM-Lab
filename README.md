@@ -107,7 +107,19 @@ auditpol /set /subcategory:"application generated" /success:enable /failure:enab
 - On server go to settings link – (NOTE!: This is where the AMA_Config_LOGAnalyticsAgentDeprecated document is crucial as the initial setup has changed a bit. Just follow that document and watch the Video.) (I learned this as I was setting this up initially do to microsoft making some design changes)
 - Go back to MS defender for cloud - environment settings - Subscription - Continuous export - click on log analytics work space tab - everything must be checked and
   select you rresource group as well as target workspace. save
-- Go to Log analytics workspaces – select WS – Agents – Data collection rules – select rule – data sources – win event logs – click custom (NOTE: Must use XPATH FILE) copy and paste
+- Go to storage accounts - use name that isnt in use - create
+- Go to NSG's - Select both linux and windowx vm's - One at a time, windows first, then linux as we will be sending NSG traffic logs to the storage account.
+- Go to NSG flow logs - Select target resouce - Both Linux and windows VM's - retention days =0 - next select flow logs version 2 - enable traffic analytics
+  every 10 minutes - review and create
+- Go to Log analytics workspaces – select WS – Agents – Data collection rules – create data collection rule - call it all-rules - select all – next resources - add resources and select both linux and win vm's and apply - Collect and deliver - add data source – linux log , select linux syslog  and log_debug, select LOG_AUTH - select destination is self explanitory at this point - click add data source as we will be adding the Windows data source - select win event logs – on bottom check information, audit success, audit failure - Destination is self axplanitory. save. review and create - create
+- Go back to log analytics workspaces - agents - data colleciton rules - select rule name, click on the name not the check box - data sources - click windows event logs -
+- click custom (NOTE: Must use XPATH FILE) copy and paste both of these lines below.
+
+  Microsoft-Windows-Windows Defender/Operational!*[System[(EventID=1116 or EventID=1117)]]
+Microsoft-Windows-Windows Firewall With Advanced Security/Firewall!*[System[(EventID=2003)]]
+
+After adding windows data sources the rest is self explanitory.
+
 - Go to log analytics workspace – logs (NOTE: The language in this system is know as KQL. You can do more research on this to get familiar)
 - type syslog (Note: this will produce logs for linux)
 - type securityevent (for windows logs)
