@@ -11,7 +11,10 @@ In this project, I created a mini SOC in Azure to monitor and analyze security e
     • AzureNetworkAnalytics_CL: Malicious network traffic detected in the honeypot
 
 You can use this step by step document to create your own similar setup/ use case.  Be mindful that certain settings might differ a bit based on updates that Azure may have completed since the creation of this document. This is a somewhat simple overview of a SOC SIEM and you should have some knowledge of Azure and the terminology used.
-Overall I had to research a lot of information as some of the details I found from different sources were not exact to make this use case possible. One main difference in this document is logging data with (AMA), known as Azure monitor agent, the previous log analytics agent is in deprecation.  I have attached a document named ( AMA_Config_LOGAnalyticsAgentDeprecated ) to get more detailed information on this once we get to that point. Please follow along below. I will be adding a youtube video with detailed information on this as well. Stay tuned for that! Thank you!
+Overall I had to research a lot of information as some of the details I found from different sources were not exact to make this use case possible. One main difference in this document is logging data with (AMA), known as Azure monitor agent, the previous log analytics agent is in deprecation.  I have attached a document named ( AMA_Config_LOGAnalyticsAgentDeprecated ) to get more detailed information on this once we get to that point. Please follow along with my youtube video below. 
+Thank you!
+
+https://www.youtube.com/watch?v=ZbkJ5OnBOhA
 
 1.    Create Resource Group
 2.    Create VM Win10 pro v.22h2 x64 gen2
